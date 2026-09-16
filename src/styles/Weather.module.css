@@ -10,6 +10,71 @@
   margin-bottom: 24px;
 }
 
+/* ===== ИЗБРАННЫЕ ГОРОДА ===== */
+.favorites {
+  margin-bottom: 20px;
+}
+
+.favoritesTitle {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.favoritesList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.favoriteChip {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border: 1px solid #ffd54f;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  transition: all 0.2s;
+}
+
+.favoriteChip:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.favoriteChipButton {
+  padding: 6px 12px;
+  background: transparent;
+  border: none;
+  font-size: 0.9rem;
+  cursor: pointer;
+  color: #333;
+  text-align: left;
+}
+
+.favoriteCountry {
+  color: #888;
+  font-size: 0.85rem;
+}
+
+.favoriteRemoveButton {
+  padding: 6px 10px;
+  background: transparent;
+  border: none;
+  border-left: 1px solid #ffd54f;
+  color: #999;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.favoriteRemoveButton:hover {
+  background: #fdecea;
+  color: #c62828;
+}
+
 /* ===== ПОИСК ===== */
 .searchForm {
   display: flex;
@@ -64,12 +129,103 @@
   margin-bottom: 20px;
 }
 
+/* ===== ВЫБОР ГОРОДА ИЗ СПИСКА ===== */
+.cityPicker {
+  margin-bottom: 20px;
+}
+
+.cityPickerHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  gap: 12px;
+}
+
+.cityPickerTitle {
+  color: #666;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.clearCityPickerButton {
+  padding: 6px 14px;
+  background: transparent;
+  border: 1px solid #ddd;
+  color: #999;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+
+.clearCityPickerButton:hover {
+  border-color: #c62828;
+  color: #c62828;
+  background: #fdecea;
+}
+
+.cityList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0;
+  margin: 0;
+}
+
+.cityButton {
+  width: 100%;
+  padding: 12px 16px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  text-align: left;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.cityButton:hover {
+  border-color: #1a73e8;
+  background: #f0f6ff;
+}
+
+.cityName {
+  font-weight: 600;
+}
+
+.cityRegion {
+  color: #666;
+}
+
+.cityCountry {
+  color: #999;
+  font-size: 0.9rem;
+}
+
+.cityPopulation {
+  color: #999;
+  font-size: 0.9rem;
+}
+
 /* ===== ПЕРЕКЛЮЧАТЕЛЬ РЕЖИМОВ ===== */
 .viewToggle {
   display: flex;
   justify-content: center;
   gap: 8px;
   margin-bottom: 20px;
+}
+
+/* ===== УПРАВЛЕНИЕ ВИДОМ: переключатель + избранное ===== */
+.viewControls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
 }
 
 .viewButton {
@@ -128,6 +284,36 @@
 .cardDesc {
   color: #666;
   margin-bottom: 18px;
+}
+
+/* Кнопка «В избранное» */
+.favoriteButton {
+  padding: 8px 18px;
+  background: #fff8e1;
+  color: #f57f17;
+  border: 1px solid #ffd54f;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.favoriteButton:hover {
+  background: #fff3c4;
+}
+
+.favoriteButtonActive {
+  padding: 8px 18px;
+  background: #ffd54f;
+  color: #fff;
+  border: 1px solid #ffd54f;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: not-allowed;
+  opacity: 0.85;
 }
 
 .cardDetails {

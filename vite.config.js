@@ -20,6 +20,7 @@ export default defineConfig({
       '@assets': '/src/assets',
       '@api': '/src/api', 
       '@utils': '/src/utils',
+      '@hooks': '/src/hooks',
     }
   },
 })
