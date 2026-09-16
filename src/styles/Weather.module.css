@@ -1,0 +1,170 @@
+.app {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 24px;
+}
+
+/* ===== ПОИСК ===== */
+.searchForm {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.searchInput {
+  flex: 1;
+  padding: 12px 16px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  outline: none;
+}
+
+.searchInput:focus {
+  border-color: #1a73e8;
+}
+
+.searchButton {
+  padding: 12px 22px;
+  background: #1a73e8;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.searchButton:hover {
+  background: #155ab6;
+}
+
+.searchButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ===== СОСТОЯНИЯ ===== */
+.loading {
+  text-align: center;
+  color: #666;
+  padding: 30px 0;
+}
+
+.error {
+  padding: 12px 16px;
+  background: #fdecea;
+  color: #c62828;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+/* ===== ПЕРЕКЛЮЧАТЕЛЬ РЕЖИМОВ ===== */
+.viewToggle {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.viewButton {
+  padding: 8px 22px;
+  border: 1px solid #ddd;
+  background: #fff;
+  color: #666;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.viewButton:hover {
+  border-color: #1a73e8;
+  color: #1a73e8;
+}
+
+.viewButtonActive {
+  padding: 8px 22px;
+  border: 1px solid #1a73e8;
+  background: #1a73e8;
+  color: #fff;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+/* ===== ТЕКУЩАЯ ПОГОДА ===== */
+.card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 28px;
+  text-align: center;
+}
+
+.cardCity {
+  font-size: 1.4rem;
+  margin-bottom: 4px;
+}
+
+.cardIcon {
+  font-size: 4rem;
+  line-height: 1;
+  margin: 10px 0;
+}
+
+.cardTemp {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.cardDesc {
+  color: #666;
+  margin-bottom: 18px;
+}
+
+.cardDetails {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.detail {
+  background: #f5f7fa;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.detailLabel {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.detailValue {
+  font-weight: 600;
+}
+
+/* ===== ПРОГНОЗ НА 7 ДНЕЙ ===== */
+.forecast {
+  margin-top: 30px;
+}
+
+.forecastTitle {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.forecastGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  gap: 10px;
+}

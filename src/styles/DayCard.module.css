@@ -1,0 +1,39 @@
+.dayCard {
+  background: #fff;
+  border-radius: 12px;
+  padding: 14px 10px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s;
+}
+
+.dayCard:hover {
+  transform: translateY(-3px);
+}
+
+.dayDate {
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 8px;
+  text-transform: capitalize;
+}
+
+.dayIcon {
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+}
+
+.dayTemps {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.9rem;
+}
+
+.tempMax {
+  font-weight: 700;
+}
+
+.tempMin {
+  color: #888;
+}

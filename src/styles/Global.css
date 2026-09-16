@@ -1,0 +1,16 @@
+/* Инициализация шрифтов */
+
+@font-face {
+  font-family: 'MyFont';
+  src: url('@/fonts/proximanova_boldit.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Глобальные */
+
+body {
+  font-family: 'MyFont';    
+}
+
