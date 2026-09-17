@@ -8,11 +8,13 @@
   text-align: center;
   font-size: 2rem;
   margin-bottom: 24px;
+  animation: fadeIn 0.4s ease-out;
 }
 
 /* ===== ИЗБРАННЫЕ ГОРОДА ===== */
 .favorites {
   margin-bottom: 20px;
+  animation: slideUp 0.4s ease-out;
 }
 
 .favoritesTitle {
@@ -38,10 +40,12 @@
   overflow: hidden;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
   transition: all 0.2s;
+  animation: slideUp 0.3s ease-out;
 }
 
 .favoriteChip:hover {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
 }
 
 .favoriteChipButton {
@@ -80,6 +84,7 @@
   display: flex;
   gap: 10px;
   margin-bottom: 24px;
+  animation: slideUp 0.4s ease-out;
 }
 
 .searchInput {
@@ -89,10 +94,12 @@
   border: 1px solid #ddd;
   border-radius: 10px;
   outline: none;
+  transition: all 0.2s;
 }
 
 .searchInput:focus {
   border-color: #1a73e8;
+  box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
 }
 
 .searchButton {
@@ -103,10 +110,16 @@
   color: #fff;
   font-size: 1rem;
   cursor: pointer;
+  transition: all 0.2s;
 }
 
-.searchButton:hover {
+.searchButton:hover:not(:disabled) {
   background: #155ab6;
+  transform: translateY(-1px);
+}
+
+.searchButton:active:not(:disabled) {
+  transform: translateY(0);
 }
 
 .searchButton:disabled {
@@ -116,9 +129,22 @@
 
 /* ===== СОСТОЯНИЯ ===== */
 .loading {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
   color: #666;
   padding: 30px 0;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #e0e0e0;
+  border-top-color: #1a73e8;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
 }
 
 .error {
@@ -127,11 +153,13 @@
   color: #c62828;
   border-radius: 10px;
   margin-bottom: 20px;
+  animation: slideUp 0.3s ease-out;
 }
 
 /* ===== ВЫБОР ГОРОДА ИЗ СПИСКА ===== */
 .cityPicker {
   margin-bottom: 20px;
+  animation: slideUp 0.3s ease-out;
 }
 
 .cityPickerHeader {
@@ -185,11 +213,13 @@
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.2s;
+  animation: slideUp 0.3s ease-out;
 }
 
 .cityButton:hover {
   border-color: #1a73e8;
   background: #f0f6ff;
+  transform: translateX(4px);
 }
 
 .cityName {
@@ -207,18 +237,11 @@
 
 .cityPopulation {
   color: #999;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  font-style: italic;
 }
 
-/* ===== ПЕРЕКЛЮЧАТЕЛЬ РЕЖИМОВ ===== */
-.viewToggle {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-bottom: 20px;
-}
-
-/* ===== УПРАВЛЕНИЕ ВИДОМ: переключатель + избранное ===== */
+/* ===== УПРАВЛЕНИЕ ВИДОМ ===== */
 .viewControls {
   display: flex;
   justify-content: space-between;
@@ -226,6 +249,12 @@
   gap: 12px;
   margin-bottom: 20px;
   flex-wrap: wrap;
+  animation: slideUp 0.3s ease-out;
+}
+
+.viewToggle {
+  display: flex;
+  gap: 8px;
 }
 
 .viewButton {
@@ -256,37 +285,7 @@
   transition: all 0.2s;
 }
 
-/* ===== ТЕКУЩАЯ ПОГОДА ===== */
-.card {
-  background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  padding: 28px;
-  text-align: center;
-}
-
-.cardCity {
-  font-size: 1.4rem;
-  margin-bottom: 4px;
-}
-
-.cardIcon {
-  font-size: 4rem;
-  line-height: 1;
-  margin: 10px 0;
-}
-
-.cardTemp {
-  font-size: 3rem;
-  font-weight: 700;
-}
-
-.cardDesc {
-  color: #666;
-  margin-bottom: 18px;
-}
-
-/* Кнопка «В избранное» */
+/* Кнопка избранного */
 .favoriteButton {
   padding: 8px 18px;
   background: #fff8e1;
@@ -300,8 +299,13 @@
   white-space: nowrap;
 }
 
-.favoriteButton:hover {
+.favoriteButton:hover:not(:disabled) {
   background: #fff3c4;
+  transform: translateY(-1px);
+}
+
+.favoriteButton:active:not(:disabled) {
+  transform: translateY(0);
 }
 
 .favoriteButtonActive {
@@ -316,6 +320,38 @@
   opacity: 0.85;
 }
 
+/* ===== ТЕКУЩАЯ ПОГОДА ===== */
+.card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 28px;
+  text-align: center;
+  animation: slideUp 0.4s ease-out;
+}
+
+.cardCity {
+  font-size: 1.4rem;
+  margin-bottom: 4px;
+}
+
+.cardIcon {
+  font-size: 4rem;
+  line-height: 1;
+  margin: 10px 0;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.cardTemp {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.cardDesc {
+  color: #666;
+  margin-bottom: 18px;
+}
+
 .cardDetails {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -327,6 +363,7 @@
   background: #f5f7fa;
   border-radius: 10px;
   padding: 10px;
+  animation: fadeIn 0.4s ease-out;
 }
 
 .detailLabel {
@@ -341,6 +378,7 @@
 /* ===== ПРОГНОЗ НА 7 ДНЕЙ ===== */
 .forecast {
   margin-top: 30px;
+  animation: slideUp 0.4s ease-out;
 }
 
 .forecastTitle {
@@ -353,4 +391,38 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
   gap: 10px;
+}
+
+/* ===== АДАПТИВ ===== */
+@media (max-width: 480px) {
+  .app {
+    padding: 20px 15px;
+  }
+
+  .title {
+    font-size: 1.6rem;
+  }
+
+  .viewControls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .viewToggle {
+    width: 100%;
+  }
+
+  .favoriteButton,
+  .favoriteButtonActive {
+    width: 100%;
+    text-align: center;
+  }
+
+  .cardTemp {
+    font-size: 2.5rem;
+  }
+
+  .cardDetails {
+    grid-template-columns: 1fr;
+  }
 }

@@ -2,11 +2,14 @@ import { getWeatherInfo } from '@utils/openMeteo/weatherCodes';
 import { formatDay, isToday } from '@utils/openMeteo/date';
 import Styles from '@styles/DayCard.module.css';
 
-export default function DayCard({ day }) {
+export default function DayCard({ day, index = 0 }) {
   const info = getWeatherInfo(day.code);
 
   return (
-    <div className={Styles.dayCard}>
+    <div
+      className={Styles.dayCard}
+      style={{ animationDelay: `${index * 0.05}s` }}
+    >
       <div className={Styles.dayDate}>
         {isToday(day.date) ? 'Сегодня' : formatDay(day.date)}
       </div>

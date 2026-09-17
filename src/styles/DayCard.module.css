@@ -4,11 +4,13 @@
   padding: 14px 10px;
   text-align: center;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
-  transition: transform 0.2s;
+  transition: all 0.2s;
+  animation: slideUp 0.4s ease-out backwards;
 }
 
 .dayCard:hover {
   transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
 }
 
 .dayDate {

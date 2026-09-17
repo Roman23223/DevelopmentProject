@@ -183,7 +183,12 @@ export default function Weather() {
         </button>
       </form>
 
-      {loading && <p className={Styles.loading}>Загружаю данные…</p>}
+      {loading && (
+        <div className={Styles.loading}>
+          <div className={Styles.spinner}></div>
+          <span>Загружаю данные…</span>
+        </div>
+      )}
 
       {error && <p className={Styles.error}>{error}</p>}
 
@@ -299,8 +304,8 @@ export default function Weather() {
         <section className={Styles.forecast}>
           <h2 className={Styles.forecastTitle}>Прогноз на 7 дней</h2>
           <div className={Styles.forecastGrid}>
-            {days.map((day) => (
-              <DayCard key={day.date} day={day} />
+            {days.map((day, index) => (
+              <DayCard key={day.date} day={day} index={index} />
             ))}
           </div>
         </section>
