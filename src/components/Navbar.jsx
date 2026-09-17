@@ -7,6 +7,7 @@ export default function Navbar() {
     <nav className={Styles.navbar}>
       <NavLink to="/" className={({ isActive }) => isActive ? Styles.navLinkActive : Styles.navLink}>Главная</NavLink>
       <NavLink to="/weather" className={({ isActive }) => isActive ? Styles.navLinkActive : Styles.navLink}>Погода</NavLink>
+      <NavLink to="/warehouse" className={({ isActive }) => isActive ? Styles.navLinkActive : Styles.navLink}>Склад</NavLink>
     </nav>
   );
 } 

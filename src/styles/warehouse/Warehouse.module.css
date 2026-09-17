@@ -1,0 +1,12 @@
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.pageTitle {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  text-align: center;
+  color: #333;
+}

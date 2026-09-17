@@ -1,6 +1,6 @@
 import { getWeatherInfo } from '@utils/openMeteo/weatherCodes';
 import { formatDay, isToday } from '@utils/openMeteo/date';
-import Styles from '@styles/DayCard.module.css';
+import Styles from '@styles/weather/DayCard.module.css';
 
 export default function DayCard({ day, index = 0 }) {
   const info = getWeatherInfo(day.code);

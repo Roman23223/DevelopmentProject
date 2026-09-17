@@ -3,7 +3,7 @@ import { searchCity, getWeatherData } from "@api/OpenMeteo";
 import { getWeatherInfo } from "@utils/openMeteo/weatherCodes";
 import { useLocalStorage } from "@hooks/UseLocalStorage";
 import DayCard from "@components/weather/DayCard";
-import Styles from "@styles/Weather.module.css";
+import Styles from "@styles/weather/Weather.module.css";
 
 export default function Weather() {
   useEffect(() => {

@@ -1,0 +1,122 @@
+.tableWrapper {
+  background: #fff;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  overflow-x: auto;
+}
+
+.tableTitle {
+  font-size: 1.2rem;
+  margin-bottom: 16px;
+  color: #333;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+
+.table th {
+  text-align: left;
+  padding: 12px;
+  background: #f5f7fa;
+  color: #666;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-bottom: 2px solid #e8e8e8;
+}
+
+.table td {
+  padding: 12px;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 0.95rem;
+}
+
+.row:hover {
+  background: #fafbfc;
+}
+
+.nameCell {
+  font-weight: 600;
+  color: #333;
+}
+
+.categoryBadge {
+  display: inline-block;
+  padding: 4px 10px;
+  background: #e8f0fe;
+  color: #1a73e8;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.totalCell {
+  font-weight: 700;
+  color: #1a73e8;
+}
+
+.dateCell {
+  color: #888;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.deleteButton {
+  padding: 6px 12px;
+  background: transparent;
+  border: 1px solid #f5c2c0;
+  color: #c62828;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+
+.deleteButton:hover {
+  background: #fdecea;
+  border-color: #c62828;
+}
+
+.empty {
+  background: #fff;
+  padding: 60px 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  text-align: center;
+}
+
+.emptyIcon {
+  font-size: 3rem;
+  margin-bottom: 12px;
+}
+
+.emptyText {
+  color: #666;
+  font-size: 1rem;
+}
+
+.editButton {
+  padding: 6px 12px;
+  background: transparent;
+  border: 1px solid #1a73e8;
+  color: #1a73e8;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+  margin-right: 8px;
+}
+
+.editButton:hover {
+  background: #e8f0fe;
+}
+
+.dateCell {
+  color: #888;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
