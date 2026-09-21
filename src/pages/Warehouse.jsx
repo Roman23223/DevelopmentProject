@@ -3,6 +3,7 @@ import { useLocalStorage } from '@hooks/UseLocalStorage';
 import ProductForm from '@components/warehouse/ProductForm';
 import ProductFilters from '@components/warehouse/ProductFilters';
 import ProductTable from '@components/warehouse/ProductTable';
+import WarehouseStats from '@components/warehouse/WarehouseStats';
 import Styles from '@styles/warehouse/Warehouse.module.css';
 
 export default function Warehouse() {
@@ -63,6 +64,8 @@ export default function Warehouse() {
         selectedCategory={selectedCategory}
         onCategoryChange={setSelectedCategory}
       />
+
+      <WarehouseStats products={filteredProducts} totalProducts={products.length} />
 
       <ProductTable
         products={filteredProducts}
