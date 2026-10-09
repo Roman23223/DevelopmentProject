@@ -33,29 +33,30 @@ export default function Weather() {
   useEffect(() => {
     if (!city) return;
 
-    let ignore = false; // ← флаг этого конкретного запуска эффекта
+    const controller = new AbortController();
 
     async function load() {
       setLoading(true);
       setError("");
       try {
-        const data = await getWeatherData(city.latitude, city.longitude);
-        if (ignore) return; // ← ответ опоздал, нас уже отменили
+        const data = await getWeatherData(
+          city.latitude,
+          city.longitude,
+          controller.signal,
+        );
         setWeather(data.current);
         setDays(data.days);
-      } catch {
-        if (ignore) return;
+      } catch (e) {
+        if (e.name === "AbortError") return; // это не сбой, это мы сами отменили
         setError("Ошибка сети. Проверь интернет и попробуй ещё раз.");
       } finally {
-        if (!ignore) setLoading(false);
+        if (!controller.signal.aborted) setLoading(false);
       }
     }
 
     load();
 
-    return () => {
-      ignore = true;
-    }; // ← очистка: помечаем этот запуск устаревшим
+    return () => controller.abort();
   }, [city]);
 
   // Поиск городов

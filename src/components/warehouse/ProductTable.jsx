@@ -156,7 +156,7 @@ export default function ProductTable({
             <SortableHeader label="Кол-во" columnKey={SORT_KEYS.QUANTITY} sort={sort} onSort={handleSort} />
             <SortableHeader label="Цена" columnKey={SORT_KEYS.PRICE} sort={sort} onSort={handleSort} />
             <SortableHeader label="Сумма" columnKey={SORT_KEYS.TOTAL} sort={sort} onSort={handleSort} />
-            <SortableHeader label="Дата добавления" columnKey={SORT_KEYS.CREATED} onSort={handleSort}/>
+            <SortableHeader label="Дата добавления" columnKey={SORT_KEYS.CREATED} sort={sort} onSort={handleSort}/>
             <th>Действия</th>
           </tr>
         </thead>
