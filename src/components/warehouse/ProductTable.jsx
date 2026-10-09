@@ -44,8 +44,6 @@ function SortableHeader({ label, columnKey, sort, onSort }) {
 export default function ProductTable({
   products,
   totalProducts,
-  onUpdate,
-  onDelete,
 }) {
   const [productToDelete, setProductToDelete] = useState(null);
   const [productToEdit, setProductToEdit] = useState(null);

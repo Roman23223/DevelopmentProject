@@ -4,6 +4,7 @@ export const PRODUCT_ACTIONS = {
   ADD: 'add',
   UPDATE: 'update',
   DELETE: 'delete',
+  ADJUST_QUANTITY: 'adjustQuantity',
 };
 
 export function productsReducer(state, action) {
@@ -19,6 +20,13 @@ export function productsReducer(state, action) {
     case PRODUCT_ACTIONS.DELETE:
       // payload — просто id
       return state.filter((p) => p.id !== action.payload);
+
+    case PRODUCT_ACTIONS.ADJUST_QUANTITY: {
+      const { id, delta } = action.payload;
+      return state.map((p) =>
+        p.id === id ? { ...p, quantity: Math.max(0, p.quantity + delta) } : p
+      );
+    }
 
     default:
       throw new Error(`Неизвестное действие: ${action.type}`);

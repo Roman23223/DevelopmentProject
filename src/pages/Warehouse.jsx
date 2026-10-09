@@ -30,7 +30,7 @@ export default function Warehouse() {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(products));
     } catch (e) {
-      console.error('Не удалось сохранить товары:', e);
+      console.error("Не удалось сохранить товары:", e);
     }
   }, [products]);
 
@@ -96,12 +96,12 @@ export default function Warehouse() {
         totalProducts={products.length}
       />
 
-      <ProductTable
-        products={filteredProducts}
-        totalProducts={products.length}
-        onDelete={handleDeleteProduct}
-        onUpdate={handleUpdateProduct}
-      />
+      <ProductsDispatchContext.Provider value={dispatch}>
+        <ProductTable
+          products={filteredProducts}
+          totalProducts={products.length}
+        />
+      </ProductsDispatchContext.Provider>
     </div>
   );
 }
