@@ -5,6 +5,7 @@ import ProductTable from "@components/warehouse/ProductTable";
 import WarehouseStats from "@components/warehouse/WarehouseStats";
 import Styles from "@styles/warehouse/Warehouse.module.css";
 import { productsReducer, PRODUCT_ACTIONS } from "@/reducers/productsReducer";
+import { ProductsDispatchContext } from "@/contexts/productsContext";
 
 const STORAGE_KEY = "warehouseProducts";
 
@@ -59,22 +60,6 @@ export default function Warehouse() {
         id: crypto.randomUUID(),
         createdAt: new Date().toISOString(),
       },
-    });
-  }
-
-  // Удалить товар
-  function handleDeleteProduct(id) {
-    dispatch({
-      type: PRODUCT_ACTIONS.DELETE,
-      payload: id,
-    });
-  }
-
-  // Обновить товар (редактирование)
-  function handleUpdateProduct(updatedProduct) {
-    dispatch({
-      type: PRODUCT_ACTIONS.UPDATE,
-      payload: updatedProduct,
     });
   }
 

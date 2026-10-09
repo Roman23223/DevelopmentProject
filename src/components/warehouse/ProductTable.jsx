@@ -3,6 +3,8 @@ import ProductRow from "@components/warehouse/ProductRow";
 import ConfirmDialog from "@components/warehouse/ConfirmDialog";
 import EditProductModal from "@components/warehouse/EditProductModal";
 import Styles from "@styles/warehouse/ProductTable.module.css";
+import { useProductsDispatch } from "@/contexts/productsContext";
+import { PRODUCT_ACTIONS } from "@/reducers/productsReducer";
 
 // Типы колонок для сортировки
 const SORT_KEYS = {
@@ -41,10 +43,9 @@ function SortableHeader({ label, columnKey, sort, onSort }) {
   );
 }
 
-export default function ProductTable({
-  products,
-  totalProducts,
-}) {
+export default function ProductTable({ products, totalProducts }) {
+  const dispatch = useProductsDispatch();
+
   const [productToDelete, setProductToDelete] = useState(null);
   const [productToEdit, setProductToEdit] = useState(null);
 
@@ -108,12 +109,12 @@ export default function ProductTable({
   }, [products, sort]);
 
   function handleConfirmDelete() {
-    onDelete(productToDelete.id);
+    dispatch({ type: PRODUCT_ACTIONS.DELETE, payload: productToDelete.id });
     setProductToDelete(null);
   }
 
   function handleSaveEdit(updatedProduct) {
-    onUpdate(updatedProduct);
+    dispatch({ type: PRODUCT_ACTIONS.UPDATE, payload: updatedProduct });
     setProductToEdit(null);
   }
 
@@ -149,12 +150,42 @@ export default function ProductTable({
       <table className={Styles.table}>
         <thead>
           <tr>
-            <SortableHeader label="Название" columnKey={SORT_KEYS.NAME} sort={sort} onSort={handleSort} />
-            <SortableHeader label="Категория" columnKey={SORT_KEYS.CATEGORY} sort={sort} onSort={handleSort} />
-            <SortableHeader label="Кол-во" columnKey={SORT_KEYS.QUANTITY} sort={sort} onSort={handleSort} />
-            <SortableHeader label="Цена" columnKey={SORT_KEYS.PRICE} sort={sort} onSort={handleSort} />
-            <SortableHeader label="Сумма" columnKey={SORT_KEYS.TOTAL} sort={sort} onSort={handleSort} />
-            <SortableHeader label="Дата добавления" columnKey={SORT_KEYS.CREATED} sort={sort} onSort={handleSort}/>
+            <SortableHeader
+              label="Название"
+              columnKey={SORT_KEYS.NAME}
+              sort={sort}
+              onSort={handleSort}
+            />
+            <SortableHeader
+              label="Категория"
+              columnKey={SORT_KEYS.CATEGORY}
+              sort={sort}
+              onSort={handleSort}
+            />
+            <SortableHeader
+              label="Кол-во"
+              columnKey={SORT_KEYS.QUANTITY}
+              sort={sort}
+              onSort={handleSort}
+            />
+            <SortableHeader
+              label="Цена"
+              columnKey={SORT_KEYS.PRICE}
+              sort={sort}
+              onSort={handleSort}
+            />
+            <SortableHeader
+              label="Сумма"
+              columnKey={SORT_KEYS.TOTAL}
+              sort={sort}
+              onSort={handleSort}
+            />
+            <SortableHeader
+              label="Дата добавления"
+              columnKey={SORT_KEYS.CREATED}
+              sort={sort}
+              onSort={handleSort}
+            />
             <th>Действия</th>
           </tr>
         </thead>

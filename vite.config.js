@@ -22,6 +22,7 @@ export default defineConfig({
       '@utils': '/src/utils',
       '@hooks': '/src/hooks',
       '@reducers': '/src/reducers',
+      '@/contexts': '/src/contexts',
     }
   },
 })

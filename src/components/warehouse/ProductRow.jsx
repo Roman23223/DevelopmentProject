@@ -1,4 +1,6 @@
-import Styles from '@styles/warehouse/ProductTable.module.css';
+import Styles from "@styles/warehouse/ProductTable.module.css";
+import { useProductsDispatch } from "@/contexts/productsContext";
+import { PRODUCT_ACTIONS } from "@/reducers/productsReducer";
 
 export default function ProductRow({
   product,
@@ -6,27 +8,58 @@ export default function ProductRow({
   onEditRequest,
   onDeleteRequest,
 }) {
+  const dispatch = useProductsDispatch();
   const total = product.quantity * product.price;
 
   return (
-    <tr
-      className={Styles.row}
-      style={{ animationDelay: `${index * 0.03}s` }}
-    >
+    <tr className={Styles.row} style={{ animationDelay: `${index * 0.03}s` }}>
       <td className={Styles.nameCell}>{product.name}</td>
       <td>
         <span className={Styles.categoryBadge}>{product.category}</span>
       </td>
-      <td>{product.quantity}</td>
+      <td>
+        <div className={Styles.quantityCell}>
+          <button
+            type="button"
+            className={Styles.quantityButton}
+            onClick={() =>
+              dispatch({
+                type: PRODUCT_ACTIONS.ADJUST_QUANTITY,
+                payload: { id: product.id, delta: -1 },
+              })
+            }
+            disabled={product.quantity === 0}
+            aria-label={`Уменьшить количество: ${product.name}`}
+          >
+            −
+          </button>
+
+          <span className={Styles.quantityValue}>{product.quantity}</span>
+
+          <button
+            type="button"
+            className={Styles.quantityButton}
+            onClick={() =>
+              dispatch({
+                type: PRODUCT_ACTIONS.ADJUST_QUANTITY,
+                payload: { id: product.id, delta: 1 },
+              })
+            }
+            aria-label={`Увеличить количество: ${product.name}`}
+          >
+            +
+          </button>
+        </div>
+      </td>
       <td>{product.price.toFixed(2)} ₽</td>
       <td className={Styles.totalCell}>{total.toFixed(2)} ₽</td>
       <td className={Styles.dateCell}>
-        {new Date(product.createdAt).toLocaleString('ru-RU', {
-          day: '2-digit',
-          month: '2-digit',
-          year: 'numeric',
-          hour: '2-digit',
-          minute: '2-digit',
+        {new Date(product.createdAt).toLocaleString("ru-RU", {
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
         })}
       </td>
       <td>
