@@ -12,7 +12,7 @@ export async function searchCity(name) {
 }
 
 // Текущая погода + прогноз на 7 дней
-export async function getWeatherData(lat, lon) {
+export async function getWeatherData(lat, lon, signal) {
   const params = new URLSearchParams({
     latitude: lat,
     longitude: lon,
@@ -21,7 +21,8 @@ export async function getWeatherData(lat, lon) {
     timezone: 'auto',
     forecast_days: '7',
   });
-  const res = await fetch(`${FORECAST_URL}?${params}`);
+
+  const res = await fetch(`${FORECAST_URL}?${params}`, { signal });
   if (!res.ok) throw new Error('Сервис погоды недоступен');
   const data = await res.json();
 
