@@ -1,4 +1,4 @@
-import { getWeatherInfo } from '@utils/openMeteo/weatherCodes';
+import { getWeatherInfo } from '@utils/openMeteo/WeatherCodes';
 import { formatDay, isToday } from '@utils/openMeteo/date';
 import Styles from '@styles/weather/DayCard.module.css';
 

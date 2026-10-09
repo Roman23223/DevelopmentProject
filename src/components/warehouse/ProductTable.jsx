@@ -1,18 +1,45 @@
-import { useState, useMemo } from 'react';
-import ProductRow from '@components/warehouse/ProductRow';
-import ConfirmDialog from '@components/warehouse/ConfirmDialog';
-import EditProductModal from '@components/warehouse/EditProductModal';
-import Styles from '@styles/warehouse/ProductTable.module.css';
+import { useState, useMemo } from "react";
+import ProductRow from "@components/warehouse/ProductRow";
+import ConfirmDialog from "@components/warehouse/ConfirmDialog";
+import EditProductModal from "@components/warehouse/EditProductModal";
+import Styles from "@styles/warehouse/ProductTable.module.css";
 
 // Типы колонок для сортировки
 const SORT_KEYS = {
-  NAME: 'name',
-  CATEGORY: 'category',
-  QUANTITY: 'quantity',
-  PRICE: 'price',
-  TOTAL: 'total',
-  CREATED: 'createdAt',
+  NAME: "name",
+  CATEGORY: "category",
+  QUANTITY: "quantity",
+  PRICE: "price",
+  TOTAL: "total",
+  CREATED: "createdAt",
 };
+
+// Иконка сортировки для колонки
+function SortIcon({ sort, columnKey }) {
+  if (sort?.key !== columnKey)
+    return <span className={Styles.sortIcon}>↕</span>;
+  return (
+    <span className={Styles.sortIconActive}>
+      {sort.direction === "asc" ? "↑" : "↓"}
+    </span>
+  );
+}
+
+// Колонка таблицы (заголовок + сортировка)
+function SortableHeader({ label, columnKey, sort, onSort }) {
+  return (
+    <th>
+      <button
+        type="button"
+        className={Styles.sortButton}
+        onClick={() => onSort(columnKey)}
+      >
+        {label}
+        <SortIcon sort={sort} columnKey={columnKey} />
+      </button>
+    </th>
+  );
+}
 
 export default function ProductTable({
   products,
@@ -27,7 +54,7 @@ export default function ProductTable({
   // По умолчанию — по дате добавления, новые сверху
   const [sort, setSort] = useState({
     key: SORT_KEYS.CREATED,
-    direction: 'desc',
+    direction: "desc",
   });
 
   // Клик по заголовку колонки
@@ -35,11 +62,11 @@ export default function ProductTable({
     setSort((prev) => {
       // Клик по той же колонке — меняем направление
       if (prev?.key === key) {
-        const next = prev.direction === 'asc' ? 'desc' : 'asc';
+        const next = prev.direction === "asc" ? "desc" : "asc";
         return { key, direction: next };
       }
       // Клик по новой колонке — asc по умолчанию
-      return { key, direction: 'asc' };
+      return { key, direction: "asc" };
     });
   }
 
@@ -48,15 +75,15 @@ export default function ProductTable({
     if (!sort) return products;
 
     const copy = [...products];
-    const dir = sort.direction === 'asc' ? 1 : -1;
+    const dir = sort.direction === "asc" ? 1 : -1;
 
     copy.sort((a, b) => {
       switch (sort.key) {
         case SORT_KEYS.NAME:
-          return a.name.localeCompare(b.name, 'ru') * dir;
+          return a.name.localeCompare(b.name, "ru") * dir;
 
         case SORT_KEYS.CATEGORY:
-          return a.category.localeCompare(b.category, 'ru') * dir;
+          return a.category.localeCompare(b.category, "ru") * dir;
 
         case SORT_KEYS.QUANTITY:
           return (a.quantity - b.quantity) * dir;
@@ -92,32 +119,6 @@ export default function ProductTable({
     setProductToEdit(null);
   }
 
-  // Иконка сортировки для колонки
-  function SortIcon({ columnKey }) {
-    if (sort?.key !== columnKey) return <span className={Styles.sortIcon}>↕</span>;
-    return (
-      <span className={Styles.sortIconActive}>
-        {sort.direction === 'asc' ? '↑' : '↓'}
-      </span>
-    );
-  }
-
-  // Колонка таблицы (заголовок + сортировка)
-  function SortableHeader({ label, columnKey }) {
-    return (
-      <th>
-        <button
-          type="button"
-          className={Styles.sortButton}
-          onClick={() => handleSort(columnKey)}
-        >
-          {label}
-          <SortIcon columnKey={columnKey} />
-        </button>
-      </th>
-    );
-  }
-
   // Заглушки пустых состояний
   if (products.length === 0 && totalProducts === 0) {
     return (
@@ -150,12 +151,12 @@ export default function ProductTable({
       <table className={Styles.table}>
         <thead>
           <tr>
-            <SortableHeader label="Название" columnKey={SORT_KEYS.NAME} />
-            <SortableHeader label="Категория" columnKey={SORT_KEYS.CATEGORY} />
-            <SortableHeader label="Кол-во" columnKey={SORT_KEYS.QUANTITY} />
-            <SortableHeader label="Цена" columnKey={SORT_KEYS.PRICE} />
-            <SortableHeader label="Сумма" columnKey={SORT_KEYS.TOTAL} />
-            <SortableHeader label="Дата добавления" columnKey={SORT_KEYS.CREATED} />
+            <SortableHeader label="Название" columnKey={SORT_KEYS.NAME} sort={sort} onSort={handleSort} />
+            <SortableHeader label="Категория" columnKey={SORT_KEYS.CATEGORY} sort={sort} onSort={handleSort} />
+            <SortableHeader label="Кол-во" columnKey={SORT_KEYS.QUANTITY} sort={sort} onSort={handleSort} />
+            <SortableHeader label="Цена" columnKey={SORT_KEYS.PRICE} sort={sort} onSort={handleSort} />
+            <SortableHeader label="Сумма" columnKey={SORT_KEYS.TOTAL} sort={sort} onSort={handleSort} />
+            <SortableHeader label="Дата добавления" columnKey={SORT_KEYS.CREATED} onSort={handleSort}/>
             <th>Действия</th>
           </tr>
         </thead>

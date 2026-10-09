@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { searchCity, getWeatherData } from "@api/OpenMeteo";
-import { getWeatherInfo } from "@utils/openMeteo/weatherCodes";
+import { getWeatherInfo } from "@utils/openMeteo/WeatherCodes";
 import { useLocalStorage } from "@hooks/UseLocalStorage";
 import DayCard from "@components/weather/DayCard";
 import Styles from "@styles/weather/Weather.module.css";
@@ -33,21 +33,29 @@ export default function Weather() {
   useEffect(() => {
     if (!city) return;
 
+    let ignore = false; // ← флаг этого конкретного запуска эффекта
+
     async function load() {
       setLoading(true);
       setError("");
       try {
         const data = await getWeatherData(city.latitude, city.longitude);
+        if (ignore) return; // ← ответ опоздал, нас уже отменили
         setWeather(data.current);
         setDays(data.days);
       } catch {
+        if (ignore) return;
         setError("Ошибка сети. Проверь интернет и попробуй ещё раз.");
       } finally {
-        setLoading(false);
+        if (!ignore) setLoading(false);
       }
     }
 
     load();
+
+    return () => {
+      ignore = true;
+    }; // ← очистка: помечаем этот запуск устаревшим
   }, [city]);
 
   // Поиск городов
