@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { searchCity, getWeatherData } from "@api/OpenMeteo";
-import { getWeatherInfo } from "@utils/openMeteo/WeatherCodes";
-import { useLocalStorage } from "@hooks/UseLocalStorage";
+import { searchCity, getWeatherData } from "@api/openMeteo";
+import { getWeatherInfo } from "@utils/openMeteo/weatherCodes";
+import { useLocalStorage } from "@hooks/useLocalStorage";
 import DayCard from "@components/weather/DayCard";
 import Styles from "@styles/weather/Weather.module.css";
 
