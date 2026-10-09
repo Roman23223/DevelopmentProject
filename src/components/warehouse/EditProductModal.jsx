@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import Styles from '@styles/warehouse/EditProductModal.module.css';
+import { useState, useEffect } from "react";
+import Styles from "@styles/warehouse/EditProductModal.module.css";
 
-const CATEGORIES = ['Электроника', 'Одежда', 'Продукты', 'Инструменты', 'Другое'];
+const CATEGORIES = ["Электроника", "Одежда", "Продукты", "Инструменты", "Другое"];
 
 export default function EditProductModal({ product, onSave, onCancel }) {
   // Инициализируем форму данными товара
@@ -13,17 +13,17 @@ export default function EditProductModal({ product, onSave, onCancel }) {
   // Закрытие по Escape
   useEffect(() => {
     function handleKey(e) {
-      if (e.key === 'Escape') onCancel();
+      if (e.key === "Escape") onCancel();
     }
-    document.addEventListener('keydown', handleKey);
-    return () => document.removeEventListener('keydown', handleKey);
+    document.addEventListener("keydown", handleKey);
+    return () => document.removeEventListener("keydown", handleKey);
   }, [onCancel]);
 
   function handleSubmit(e) {
     e.preventDefault();
 
     if (!name.trim()) {
-      alert('Введите название товара');
+      alert("Введите название товара");
       return;
     }
 
@@ -31,18 +31,18 @@ export default function EditProductModal({ product, onSave, onCancel }) {
     const prc = parseFloat(price);
 
     if (isNaN(qty) || qty < 0) {
-      alert('Количество должно быть числом ≥ 0');
+      alert("Количество должно быть числом ≥ 0");
       return;
     }
 
     if (isNaN(prc) || prc < 0) {
-      alert('Цена должна быть числом ≥ 0');
+      alert("Цена должна быть числом ≥ 0");
       return;
     }
 
     // Отправляем обновлённые данные наверх
     onSave({
-      ...product,                          // сохраняем id, createdAt
+      ...product, // сохраняем id, createdAt
       name: name.trim(),
       quantity: qty,
       price: prc,
@@ -52,11 +52,7 @@ export default function EditProductModal({ product, onSave, onCancel }) {
 
   return (
     <div className={Styles.overlay} onClick={onCancel}>
-      <form
-        className={Styles.modal}
-        onSubmit={handleSubmit}
-        onClick={(e) => e.stopPropagation()}
-      >
+      <form className={Styles.modal} onSubmit={handleSubmit} onClick={(e) => e.stopPropagation()}>
         <h3 className={Styles.modalTitle}>Редактировать товар</h3>
 
         <div className={Styles.formGrid}>
@@ -102,7 +98,9 @@ export default function EditProductModal({ product, onSave, onCancel }) {
               onChange={(e) => setCategory(e.target.value)}
             >
               {CATEGORIES.map((cat) => (
-                <option key={cat} value={cat}>{cat}</option>
+                <option key={cat} value={cat}>
+                  {cat}
+                </option>
               ))}
             </select>
           </div>

@@ -18,24 +18,15 @@ const SORT_KEYS = {
 
 // Иконка сортировки для колонки
 function SortIcon({ sort, columnKey }) {
-  if (sort?.key !== columnKey)
-    return <span className={Styles.sortIcon}>↕</span>;
-  return (
-    <span className={Styles.sortIconActive}>
-      {sort.direction === "asc" ? "↑" : "↓"}
-    </span>
-  );
+  if (sort?.key !== columnKey) return <span className={Styles.sortIcon}>↕</span>;
+  return <span className={Styles.sortIconActive}>{sort.direction === "asc" ? "↑" : "↓"}</span>;
 }
 
 // Колонка таблицы (заголовок + сортировка)
 function SortableHeader({ label, columnKey, sort, onSort }) {
   return (
     <th>
-      <button
-        type="button"
-        className={Styles.sortButton}
-        onClick={() => onSort(columnKey)}
-      >
+      <button type="button" className={Styles.sortButton} onClick={() => onSort(columnKey)}>
         {label}
         <SortIcon sort={sort} columnKey={columnKey} />
       </button>
@@ -45,7 +36,6 @@ function SortableHeader({ label, columnKey, sort, onSort }) {
 
 export default function ProductTable({ products, totalProducts }) {
   const dispatch = useProductsDispatch();
-
   const [productToDelete, setProductToDelete] = useState(null);
   const [productToEdit, setProductToEdit] = useState(null);
 
@@ -94,11 +84,7 @@ export default function ProductTable({ products, totalProducts }) {
           return (a.quantity * a.price - b.quantity * b.price) * dir;
 
         case SORT_KEYS.CREATED:
-          return (
-            (new Date(a.createdAt).getTime() -
-              new Date(b.createdAt).getTime()) *
-            dir
-          );
+          return (new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()) * dir;
 
         default:
           return 0;
@@ -132,9 +118,7 @@ export default function ProductTable({ products, totalProducts }) {
     return (
       <div className={Styles.empty}>
         <p className={Styles.emptyIcon}>🔍</p>
-        <p className={Styles.emptyText}>
-          По текущим фильтрам ничего не найдено.
-        </p>
+        <p className={Styles.emptyText}>По текущим фильтрам ничего не найдено.</p>
       </div>
     );
   }

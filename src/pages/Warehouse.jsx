@@ -42,11 +42,8 @@ export default function Warehouse() {
   // ⭐ useMemo: фильтрация пересчитывается ТОЛЬКО при изменении зависимостей
   const filteredProducts = useMemo(() => {
     return products.filter((product) => {
-      const matchesSearch = product.name
-        .toLowerCase()
-        .includes(searchQuery.toLowerCase());
-      const matchesCategory =
-        selectedCategory === "" || product.category === selectedCategory;
+      const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase());
+      const matchesCategory = selectedCategory === "" || product.category === selectedCategory;
       return matchesSearch && matchesCategory;
     });
   }, [products, searchQuery, selectedCategory]);
@@ -76,16 +73,10 @@ export default function Warehouse() {
         onCategoryChange={setSelectedCategory}
       />
 
-      <WarehouseStats
-        products={filteredProducts}
-        totalProducts={products.length}
-      />
+      <WarehouseStats products={filteredProducts} totalProducts={products.length} />
 
       <ProductsDispatchContext.Provider value={dispatch}>
-        <ProductTable
-          products={filteredProducts}
-          totalProducts={products.length}
-        />
+        <ProductTable products={filteredProducts} totalProducts={products.length} />
       </ProductsDispatchContext.Provider>
     </div>
   );

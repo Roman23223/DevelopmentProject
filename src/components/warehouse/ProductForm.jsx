@@ -1,12 +1,12 @@
-import { useState } from 'react';
-import Styles from '@styles/warehouse/ProductForm.module.css';
+import { useState } from "react";
+import Styles from "@styles/warehouse/ProductForm.module.css";
 
-const CATEGORIES = ['Электроника', 'Одежда', 'Продукты', 'Инструменты', 'Другое'];
+const CATEGORIES = ["Электроника", "Одежда", "Продукты", "Инструменты", "Другое"];
 
 export default function ProductForm({ onAdd }) {
-  const [name, setName] = useState('');
-  const [quantity, setQuantity] = useState('');
-  const [price, setPrice] = useState('');
+  const [name, setName] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const [price, setPrice] = useState("");
   const [category, setCategory] = useState(CATEGORIES[0]);
 
   function handleSubmit(e) {
@@ -14,7 +14,7 @@ export default function ProductForm({ onAdd }) {
 
     // Валидация
     if (!name.trim()) {
-      alert('Введите название товара');
+      alert("Введите название товара");
       return;
     }
 
@@ -22,12 +22,12 @@ export default function ProductForm({ onAdd }) {
     const prc = parseFloat(price);
 
     if (isNaN(qty) || qty < 0) {
-      alert('Количество должно быть числом ≥ 0');
+      alert("Количество должно быть числом ≥ 0");
       return;
     }
 
     if (isNaN(prc) || prc < 0) {
-      alert('Цена должна быть числом ≥ 0');
+      alert("Цена должна быть числом ≥ 0");
       return;
     }
 
@@ -40,9 +40,9 @@ export default function ProductForm({ onAdd }) {
     });
 
     // Очищаем форму
-    setName('');
-    setQuantity('');
-    setPrice('');
+    setName("");
+    setQuantity("");
+    setPrice("");
     setCategory(CATEGORIES[0]);
   }
 
@@ -95,7 +95,9 @@ export default function ProductForm({ onAdd }) {
             onChange={(e) => setCategory(e.target.value)}
           >
             {CATEGORIES.map((cat) => (
-              <option key={cat} value={cat}>{cat}</option>
+              <option key={cat} value={cat}>
+                {cat}
+              </option>
             ))}
           </select>
         </div>

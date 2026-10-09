@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import Styles from '@styles/Home.module.css'
+import { useEffect } from "react";
+import Styles from "@styles/Home.module.css";
 
 export default function NotFound() {
   useEffect(() => {
@@ -8,7 +8,7 @@ export default function NotFound() {
 
   return (
     <div className={Styles.mainContainer}>
-        <h1>Это главная страница</h1>
+      <h1>Это главная страница</h1>
     </div>
   );
 }

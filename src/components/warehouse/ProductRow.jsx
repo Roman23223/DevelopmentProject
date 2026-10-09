@@ -2,12 +2,7 @@ import Styles from "@styles/warehouse/ProductTable.module.css";
 import { useProductsDispatch } from "@/contexts/productsContext";
 import { PRODUCT_ACTIONS } from "@/reducers/productsReducer";
 
-export default function ProductRow({
-  product,
-  index,
-  onEditRequest,
-  onDeleteRequest,
-}) {
+export default function ProductRow({ product, index, onEditRequest, onDeleteRequest }) {
   const dispatch = useProductsDispatch();
   const total = product.quantity * product.price;
 

@@ -1,9 +1,10 @@
 import { Routes, Route } from "react-router-dom";
-import PagesWithNavigation from '@components/PagesWithNavigation';
+import PagesWithNavigation from "@components/PagesWithNavigation";
 import NotFound from "@pages/NotFound";
 import Home from "@pages/Home";
 import Weather from "@pages/Weather";
 import Warehouse from "@pages/Warehouse";
+import Pomodoro from "@pages/Pomodoro";
 
 export default function AppRoutes() {
   return (
@@ -13,6 +14,7 @@ export default function AppRoutes() {
         <Route path="/" element={<Home />} />
         <Route path="/weather" element={<Weather />} />
         <Route path="/warehouse" element={<Warehouse />} />
+        <Route path="/pomodoro" element={<Pomodoro />} />
       </Route>
       {/* Группа страниц c навигацией */}
       <Route path="*" element={<NotFound />} />

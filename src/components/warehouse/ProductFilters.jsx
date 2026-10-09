@@ -1,6 +1,6 @@
-import Styles from '@styles/warehouse/ProductFilters.module.css';
+import Styles from "@styles/warehouse/ProductFilters.module.css";
 
-const CATEGORIES = ['Электроника', 'Одежда', 'Продукты', 'Инструменты', 'Другое'];
+const CATEGORIES = ["Электроника", "Одежда", "Продукты", "Инструменты", "Другое"];
 
 export default function ProductFilters({
   searchQuery,
@@ -9,11 +9,11 @@ export default function ProductFilters({
   onCategoryChange,
 }) {
   function handleClearFilters() {
-    onSearchChange('');
-    onCategoryChange('');
+    onSearchChange("");
+    onCategoryChange("");
   }
 
-  const hasFilters = searchQuery !== '' || selectedCategory !== '';
+  const hasFilters = searchQuery !== "" || selectedCategory !== "";
 
   return (
     <div className={Styles.filters}>
@@ -37,17 +37,15 @@ export default function ProductFilters({
         >
           <option value="">Все категории</option>
           {CATEGORIES.map((cat) => (
-            <option key={cat} value={cat}>{cat}</option>
+            <option key={cat} value={cat}>
+              {cat}
+            </option>
           ))}
         </select>
       </div>
 
       {hasFilters && (
-        <button
-          type="button"
-          className={Styles.clearButton}
-          onClick={handleClearFilters}
-        >
+        <button type="button" className={Styles.clearButton} onClick={handleClearFilters}>
           ✕ Сбросить фильтры
         </button>
       )}

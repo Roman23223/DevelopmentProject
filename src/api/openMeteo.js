@@ -22,7 +22,11 @@ export async function getWeatherData(lat, lon, signal) {
     forecast_days: '7',
   });
 
-  const res = await fetch(`${FORECAST_URL}?${params}`, { signal });
+  // Запрос прерывается либо нами (смена города), либо по таймауту в 10 секунд
+  const timeout = AbortSignal.timeout(10000);
+  const combined = signal ? AbortSignal.any([signal, timeout]) : timeout;
+  const res = await fetch(`${FORECAST_URL}?${params}`, { signal: combined });
+
   if (!res.ok) throw new Error('Сервис погоды недоступен');
   const data = await res.json();
 

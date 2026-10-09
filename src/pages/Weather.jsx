@@ -39,15 +39,15 @@ export default function Weather() {
       setLoading(true);
       setError("");
       try {
-        const data = await getWeatherData(
-          city.latitude,
-          city.longitude,
-          controller.signal,
-        );
+        const data = await getWeatherData(city.latitude, city.longitude, controller.signal);
         setWeather(data.current);
         setDays(data.days);
       } catch (e) {
-        if (e.name === "AbortError") return; // это не сбой, это мы сами отменили
+        if (e.name === "AbortError") return;
+        if (e.name === "TimeoutError") {
+          setError("Сервис погоды не отвечает. Попробуй позже.");
+          return;
+        }
         setError("Ошибка сети. Проверь интернет и попробуй ещё раз.");
       } finally {
         if (!controller.signal.aborted) setLoading(false);
@@ -154,12 +154,7 @@ export default function Weather() {
                   onClick={() => handleSelectFavorite(fav)}
                 >
                   ⭐ {fav.name}
-                  {fav.country && (
-                    <span className={Styles.favoriteCountry}>
-                      {" "}
-                      ({fav.country})
-                    </span>
-                  )}
+                  {fav.country && <span className={Styles.favoriteCountry}> ({fav.country})</span>}
                 </button>
                 <button
                   type="button"
@@ -183,11 +178,7 @@ export default function Weather() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
-        <button
-          className={Styles.searchButton}
-          type="submit"
-          disabled={loading}
-        >
+        <button className={Styles.searchButton} type="submit" disabled={loading}>
           Найти
         </button>
       </form>
@@ -205,9 +196,7 @@ export default function Weather() {
       {cities.length > 0 && (
         <div className={Styles.cityPicker}>
           <div className={Styles.cityPickerHeader}>
-            <p className={Styles.cityPickerTitle}>
-              Найдено несколько городов — выбери нужный:
-            </p>
+            <p className={Styles.cityPickerTitle}>Найдено несколько городов — выбери нужный:</p>
             <button
               type="button"
               className={Styles.clearCityPickerButton}
@@ -225,9 +214,7 @@ export default function Weather() {
                   onClick={() => handleSelectCity(c)}
                 >
                   <span className={Styles.cityName}>{c.name}</span>
-                  {c.admin1 && (
-                    <span className={Styles.cityRegion}>, {c.admin1}</span>
-                  )}
+                  {c.admin1 && <span className={Styles.cityRegion}>, {c.admin1}</span>}
                   <span className={Styles.cityCountry}> — {c.country}</span>
                   <span className={Styles.cityPopulation}>
                     {" "}
@@ -246,18 +233,14 @@ export default function Weather() {
           <div className={Styles.viewToggle}>
             <button
               type="button"
-              className={
-                view === "current" ? Styles.viewButtonActive : Styles.viewButton
-              }
+              className={view === "current" ? Styles.viewButtonActive : Styles.viewButton}
               onClick={() => setView("current")}
             >
               Сегодня
             </button>
             <button
               type="button"
-              className={
-                view === "week" ? Styles.viewButtonActive : Styles.viewButton
-              }
+              className={view === "week" ? Styles.viewButtonActive : Styles.viewButton}
               onClick={() => setView("week")}
             >
               7 дней
@@ -265,9 +248,7 @@ export default function Weather() {
           </div>
           <button
             type="button"
-            className={
-              isFavorite ? Styles.favoriteButtonActive : Styles.favoriteButton
-            }
+            className={isFavorite ? Styles.favoriteButtonActive : Styles.favoriteButton}
             onClick={handleAddToFavorites}
             disabled={isFavorite}
           >
@@ -281,28 +262,20 @@ export default function Weather() {
         <div className={Styles.card}>
           <h2 className={Styles.cardCity}>{city.name}</h2>
           <div className={Styles.cardIcon}>{info.icon}</div>
-          <div className={Styles.cardTemp}>
-            {Math.round(weather.temperature_2m)}°C
-          </div>
+          <div className={Styles.cardTemp}>{Math.round(weather.temperature_2m)}°C</div>
           <p className={Styles.cardDesc}>{info.label}</p>
           <div className={Styles.cardDetails}>
             <div className={Styles.detail}>
               <div className={Styles.detailLabel}>Ощущается</div>
-              <div className={Styles.detailValue}>
-                {Math.round(weather.apparent_temperature)}°C
-              </div>
+              <div className={Styles.detailValue}>{Math.round(weather.apparent_temperature)}°C</div>
             </div>
             <div className={Styles.detail}>
               <div className={Styles.detailLabel}>Влажность</div>
-              <div className={Styles.detailValue}>
-                {weather.relative_humidity_2m}%
-              </div>
+              <div className={Styles.detailValue}>{weather.relative_humidity_2m}%</div>
             </div>
             <div className={Styles.detail}>
               <div className={Styles.detailLabel}>Ветер</div>
-              <div className={Styles.detailValue}>
-                {Math.round(weather.wind_speed_10m)} км/ч
-              </div>
+              <div className={Styles.detailValue}>{Math.round(weather.wind_speed_10m)} км/ч</div>
             </div>
           </div>
         </div>

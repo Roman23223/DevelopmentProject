@@ -1,7 +1,7 @@
-import Routing from '@r/Routing'
+import Routing from "@r/Routing";
 
 function App() {
-  return (<Routing />)
+  return <Routing />;
 }
 
-export default App
+export default App;
