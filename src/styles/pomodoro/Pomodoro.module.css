@@ -97,3 +97,67 @@
   font-size: 0.9rem;
   margin-bottom: 28px;
 }
+.settings {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid #e0e0e0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.settingsField {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: left;
+}
+
+.settingsLabel {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.settingsInput {
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  color: #333;
+  text-align: center;
+  background: #fff;
+}
+
+.settingsInput:disabled {
+  background: #f5f7fa;
+  color: #999;
+  cursor: not-allowed;
+}
+
+.settingsHint {
+  margin-top: 10px;
+  font-size: 0.8rem;
+  color: #999;
+}
+
+.alerts {
+  margin-top: 16px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.alertToggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: #666;
+  cursor: pointer;
+}
+
+.alertToggle:has(input:disabled) {
+  color: #bbb;
+  cursor: not-allowed;
+}
